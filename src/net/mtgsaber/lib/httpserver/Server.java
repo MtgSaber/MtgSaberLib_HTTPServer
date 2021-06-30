@@ -99,11 +99,9 @@ public class Server implements HttpHandler {
         }
 
         try {
-            Processor.addCORSHeaders(exchange);
-            System.out.println("Connection from " + exchange.getRemoteAddress().toString() + " accessing " + exchange.getRequestURI().getRawPath());
             // extract path & method, call corresponding method from appropriate handler. init a new handler if need be.
             final String path = exchange.getRequestURI().getRawPath();
-            final HTTPMethod method = HTTPMethod.fromString(exchange.getRequestMethod());
+            final HTTPMethod.Standard method = HTTPMethod.Standard.fromString(exchange.getRequestMethod());
             final Processor handler = getHandler(path);
             System.out.println(handler);
             Consumer<HttpExchange> processor = null;
