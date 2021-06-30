@@ -45,7 +45,7 @@
 # Kernel Module Compile Results
 *.mod*
 *.cmd
-.tmp_versions/
+/.tmp_versions/
 modules.order
 Module.symvers
 Mkfile.old
@@ -58,13 +58,13 @@ dkms.conf
 *.log
 
 #libraries
-lib/
+/lib/
 
 # BlueJ files
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+/.mtj.tmp/
 
 # Package Files #
 *.jar
@@ -88,7 +88,7 @@ hs_err_pid*
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-.idea/
+/.idea/
 *.iml
 *.MF
 
@@ -96,7 +96,7 @@ hs_err_pid*
 .idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-.idea/**/dataSources/
+/.idea/**/dataSources/
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
 .idea/**/sqlDataSources.xml
@@ -118,7 +118,7 @@ hs_err_pid*
 .idea/*.xml
 
 # CMake
-cmake-build-*/
+/cmake-build-*/
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
@@ -127,10 +127,10 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
+/out/
 
 # mpeltonen/sbt-.idea plugin
-.idea_modules/
+/.idea_modules/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
