@@ -1,9 +1,9 @@
 package net.mtgsaber.lib.httpserver;
 
 public interface HTTPCode {
-    int code();
     String name();
-
+    int code();
+    record NonEnumerated(String name, int code) implements HTTPCode{}
     enum IANACode implements HTTPCode {
         Continue(100),
         SwitchingProtocols(101),
