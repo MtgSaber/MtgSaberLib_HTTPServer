@@ -3,7 +3,6 @@ package net.mtgsaber.lib.httpserver;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;

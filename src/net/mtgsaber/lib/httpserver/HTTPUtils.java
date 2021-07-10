@@ -6,10 +6,7 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class HTTPUtils {

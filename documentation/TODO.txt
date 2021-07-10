@@ -1,0 +1,13 @@
+Feature Plans:
+    Overall:
+        + improve server architecture by allowing library users to specify their own factories in a simple manner
+
+    HTTPUtils.class:
+        + add features for HTTP clients
+        + add a method for extracting information from URLs
+
+    Processor.class
+        + perhaps streamline the Processor class into a child class, using wrappers for Functions to make
+          some aspects of extending Process.class easier and less repetitive
+        + change the way matchers are done, so that child classes don't have to copy and paste 10 lines of static code
+          every time
