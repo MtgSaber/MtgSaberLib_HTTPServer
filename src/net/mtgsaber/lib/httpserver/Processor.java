@@ -28,19 +28,19 @@ public abstract class Processor implements Comparable<Processor>, Closeable {
     }
 
     public void doGET(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->HTTPCode.IANACode.MethodNotAllowed, null).accept(exchange);
+        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doPOST(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->HTTPCode.IANACode.MethodNotAllowed, null).accept(exchange);
+        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doPUT(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->HTTPCode.IANACode.MethodNotAllowed, null).accept(exchange);
+        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doDelete(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->HTTPCode.IANACode.MethodNotAllowed, null).accept(exchange);
+        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doOptions(HttpExchange exchange) {
