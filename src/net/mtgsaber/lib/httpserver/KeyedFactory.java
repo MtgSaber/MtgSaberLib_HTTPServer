@@ -2,7 +2,7 @@ package net.mtgsaber.lib.httpserver;
 
 import java.util.function.Function;
 
-public interface KeyedFactory<T> {
+interface KeyedFactory<T> {
     T create();
 
     /**

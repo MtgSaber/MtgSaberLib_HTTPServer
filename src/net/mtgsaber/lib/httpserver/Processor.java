@@ -1,6 +1,8 @@
 package net.mtgsaber.lib.httpserver;
 
 import com.sun.net.httpserver.HttpExchange;
+import net.mtgsaber.lib.httpserver.util.HTTPJsonAdapter;
+import net.mtgsaber.lib.httpserver.util.HTTPServerUtils;
 
 import java.io.Closeable;
 import java.util.HashMap;
@@ -14,37 +16,48 @@ public abstract class Processor implements Comparable<Processor>, Closeable {
 
     protected final Function<String, Boolean> MATCHER;
     protected final HTTPCode DEFAULT_RESPONSE_CODE;
+    protected final HTTPJsonAdapter JSON_ADAPTER;
 
     protected volatile int load = 0;
 
     protected Processor(Function<String, Boolean> matcher) {
-        this.MATCHER = matcher;
-        this.DEFAULT_RESPONSE_CODE = HTTPCode.IANACode.MethodNotAllowed;
+        this(matcher, new HTTPJsonAdapter.Factory());
+    }
+
+    protected Processor(Function<String, Boolean> matcher, HTTPJsonAdapter.Factory jsonAdapterFactory) {
+        this(matcher, jsonAdapterFactory, HTTPCode.IANACode.MethodNotAllowed);
     }
 
     protected Processor(Function<String, Boolean> matcher, HTTPCode dfault) {
+        this(matcher, new HTTPJsonAdapter.Factory(), dfault);
+    }
+
+    protected Processor(
+            Function<String, Boolean> matcher, HTTPJsonAdapter.Factory jsonAdapterFactory, HTTPCode dfault
+    ) {
+        this.JSON_ADAPTER = jsonAdapterFactory.create();
         this.MATCHER = matcher;
         this.DEFAULT_RESPONSE_CODE = dfault;
     }
 
     public void doGET(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
+        HTTPServerUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doPOST(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
+        HTTPServerUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doPUT(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
+        HTTPServerUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doDelete(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
+        HTTPServerUtils.process(()->null, ()->-1, ()->DEFAULT_RESPONSE_CODE, null).accept(exchange);
     }
 
     public void doOptions(HttpExchange exchange) {
-        HTTPUtils.process(()->null, ()->-1, ()->HTTPCode.IANACode.NoContent, null).accept(exchange);
+        HTTPServerUtils.process(()->null, ()->-1, ()->HTTPCode.IANACode.NoContent, null).accept(exchange);
     }
 
     /**

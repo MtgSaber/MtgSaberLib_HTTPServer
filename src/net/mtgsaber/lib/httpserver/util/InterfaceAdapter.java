@@ -1,4 +1,4 @@
-package net.mtgsaber.lib.httpserver;
+package net.mtgsaber.lib.httpserver.util;
 
 import com.google.gson.*;
 
@@ -24,17 +24,21 @@ public class InterfaceAdapter<T> implements JsonSerializer<T>, JsonDeserializer<
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
         String className = prim.getAsString();
-        Class<?> klass = getObjectClass(className);
-        return jsonDeserializationContext.deserialize(jsonObject.get(DATA), klass);
+        Class<?> clazz = getObjectClass(className);
+        return jsonDeserializationContext.deserialize(jsonObject.get(DATA), clazz);
     }
 
     @Override
     public JsonElement serialize(
-            Object jsonElement, Type type, JsonSerializationContext jsonSerializationContext
+            Object jsonElement, Type type,
+            JsonSerializationContext jsonSerializationContext
     ) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(CLASSNAME, jsonElement.getClass().getName());
-        jsonObject.add(DATA, jsonSerializationContext.serialize(jsonElement));
+        Class<?> clazz = jsonElement.getClass();
+        jsonObject.addProperty(CLASSNAME, clazz.getName());
+        System.out.println(clazz.getName());
+        // The original line in the web article produces stack overflow error. They forgot to specify class of data.
+        jsonObject.add(DATA, jsonSerializationContext.serialize(jsonElement, clazz));
         return jsonObject;
     }
 
