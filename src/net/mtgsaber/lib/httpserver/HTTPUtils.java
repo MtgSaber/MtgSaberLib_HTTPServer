@@ -6,13 +6,22 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class HTTPUtils {
+    private static final Set<Class<?>> INTERFACES = new HashSet<>();
+
     public static final int IO_BUFF_SIZE = 1024;
-    public static final Gson GSON = new GsonBuilder().create();
-    public static final Gson PRETTY_GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static volatile Gson GSON = new GsonBuilder().create();
+    public static volatile Gson PRETTY_GSON = new GsonBuilder().setPrettyPrinting().create();
+
+    private static void setGsonInstances() {
+        GsonBuilder builder = new GsonBuilder();
+        INTERFACES.forEach(clazz -> builder.registerTypeAdapter(clazz, new InterfaceAdapter<>()));
+    }
 
     /**
      * The suppliers are called in this order: code, length, response
